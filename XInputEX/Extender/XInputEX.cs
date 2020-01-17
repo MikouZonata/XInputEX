@@ -672,6 +672,24 @@ namespace XInputDotNetExtended
 					return result;
 			}
 		}
+		/// <summary>
+		/// Returns the value of the given axis snapped to -1, 0 or 1.
+		/// </summary>
+		/// <param name="playerIndex">Which controller would you like to check?</param>
+		/// <param name="axis">Which axis would you like to check?</param>
+		/// <returns></returns>
+		public static float GetAxisRaw (PlayerIndex playerIndex, Axis axis, float deadzone = .08f)
+		{
+			float axisValue = GetAxis(playerIndex, axis);
+
+			if (axisValue > deadzone) {
+				return 1;
+			} else if (axisValue < -deadzone) {
+				return -1;
+			} else {
+				return 0;
+			}
+		}
 		#endregion
 
 		#region GetAnyButton functions
