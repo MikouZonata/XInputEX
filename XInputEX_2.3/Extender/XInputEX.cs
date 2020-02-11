@@ -1,6 +1,6 @@
 using XInputDotNetPure;
 using UnityEngine;
-using XInputDotNetExtended.Vibrations;
+using XInputDotNetExtended.Dependancies;
 
 namespace XInputDotNetExtended
 {
@@ -911,20 +911,43 @@ namespace XInputDotNetExtended
 		#endregion
 
 		#region Vibration functions
+		/// <summary>
+		/// Set a controller to vibrate at the given strengths for a given duration.
+		/// </summary>
+		/// <param name="playerIndex">Which controller would you like to vibrate?</param>
+		/// <param name="leftMotorStrength">The strength of the left vibration motor as a value from 0.0 through 1.0.</param>
+		/// <param name="rightMotorStrength">The strength of the right vibration motor as a value from 0.0 through 1.0.</param>
+		/// <param name="duration">The duration of the vibration in seconds.</param>
 		public static void StartVibration (PlayerIndex playerIndex, float leftMotorStrength, float rightMotorStrength, float duration = .3f)
 		{
 			Vibration vibration = new Vibration(leftMotorStrength, rightMotorStrength, duration);
 			_vibrationHandler.StartVibration(playerIndex, vibration);
 		}
 
+		/// <summary>
+		/// Set a controller to vibrate at the given strengths for a given duration.
+		/// </summary>
+		/// <param name="playerIndex">Which controller would you like to vibrate?</param>
 		public static void StartVibration (PlayerIndex playerIndex, Vibration vibration)
 		{
 			_vibrationHandler.StartVibration(playerIndex, vibration);
 		}
 
+		/// <summary>
+		/// Immediately stop a controller's running vibration.
+		/// </summary>
+		/// <param name="playerIndex">Which controller would you like to stop vibrating?</param>
 		public static void StopVibration (PlayerIndex playerIndex)
 		{
 			_vibrationHandler.StopVibration(playerIndex);
+		}
+
+		/// <summary>
+		/// Immediately stop all controllers' running vibration.
+		/// </summary>
+		public static void StopAllVibrations ()
+		{
+			_vibrationHandler.StopAllVibrations();
 		}
 		#endregion
 	}

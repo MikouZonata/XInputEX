@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure;
 
-namespace XInputDotNetExtended.Vibrations
+namespace XInputDotNetExtended.Dependancies
 {
 	public class VibrationHandler
 	{
@@ -20,6 +20,8 @@ namespace XInputDotNetExtended.Vibrations
 
 		void OnDestroy ()
 		{
+			Debug.Log("Destroyed");
+
 			foreach (VibrationRunner vr in _vibrationRunners) {
 				vr.StopVibration();
 			}
@@ -44,6 +46,13 @@ namespace XInputDotNetExtended.Vibrations
 		{
 			_vibrationRunners[playerIndex].StopVibration();
 			GamePad.SetVibration(playerIndex, 0, 0);
+		}
+
+		public void StopAllVibrations ()
+		{
+			foreach (VibrationRunner vr in _vibrationRunners) {
+				vr.StopVibration();
+			}
 		}
 		#endregion
 	}

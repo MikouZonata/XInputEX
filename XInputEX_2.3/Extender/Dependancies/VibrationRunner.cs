@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using XInputDotNetPure;
 
-namespace XInputDotNetExtended.Vibrations
+namespace XInputDotNetExtended.Dependancies
 {
 	public class VibrationRunner
 	{
@@ -24,6 +24,7 @@ namespace XInputDotNetExtended.Vibrations
 			} else {
 				GamePad.SetVibration(_playerIndex, _leftMotorStrength, _rightMotorStrength);
 				_timeRemaining -= Time.deltaTime;
+				Debug.Log(_timeRemaining);
 			}
 		}
 
@@ -32,11 +33,13 @@ namespace XInputDotNetExtended.Vibrations
 			_leftMotorStrength = vibration.leftMotorStrength;
 			_rightMotorStrength = vibration.rightMotorStrength;
 			_timeRemaining = vibration.duration;
+			GamePad.SetVibration(_playerIndex, _leftMotorStrength, _rightMotorStrength);
 		}
 
 		public void StopVibration ()
 		{
 			_timeRemaining = 0;
+			GamePad.SetVibration(_playerIndex, 0, 0);
 		}
 	}
 }

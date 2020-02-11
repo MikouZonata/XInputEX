@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace XInputDotNetPure
+namespace XInputDotNetExtended.Dependancies
 {
 	public class XInputDotNetUpdater : MonoBehaviour
 	{
